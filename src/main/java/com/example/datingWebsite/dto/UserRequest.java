@@ -11,8 +11,5 @@ public record UserRequest(
 
         @NotEmpty(message = "Password can't be empty")
         @Size(min = 8, message = "Password must be at least 8 characters")
-        String password,
-
-        @NotEmpty(message = "Username can't be empty")
-        String username
+        String password
 ) {}

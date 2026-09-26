@@ -38,7 +38,6 @@ public class UserService {
         user.setRole(UserRole.USER);
         user.setActive(true);
         user.setCreatedAt(LocalDateTime.now());
-        user.setUsername(request.username());
 
         Users savedUser = userRepository.save(user);
 
@@ -47,16 +46,15 @@ public class UserService {
                 savedUser.getEmail(),
                 savedUser.getRole(),
                 savedUser.isActive(),
-                savedUser.getCreatedAt(),
-                savedUser.getUsername()
+                savedUser.getCreatedAt()
         );
     }
 
     public String verify(UserRequest request) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.username(), request.password()));
+                new UsernamePasswordAuthenticationToken(request.email(), request.password()));
         if (authentication.isAuthenticated()) {
-            return jwtService.generateToken(request.username());
+            return jwtService.generateToken(request.email());
         } else {
             return "fail";
         }

@@ -23,8 +23,6 @@ public class Users {
     @Column(nullable = false)
     private String password;
 
-    private String username;
-
     private UserRole role;
     private boolean isActive;
     private LocalDateTime createdAt;
