@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/profiles")
 @AllArgsConstructor
 public class ProfileController {
 
@@ -26,7 +27,6 @@ public class ProfileController {
             @RequestHeader("Authorization") String authHeader
     ) {
         String token = authHeader.replace("Bearer ", "");
-
         return profileService.createProfile(profileRequest, token);
     }
 
