@@ -26,8 +26,9 @@ public class Profile {
     private String firstname;
     private String lastname;
     private Integer age;
-    private String gender;
+    private ProfileGender gender;
     private String bio;
+    private String city;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;

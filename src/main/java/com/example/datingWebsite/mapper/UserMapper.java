@@ -25,7 +25,6 @@ public class UserMapper {
         user.setRole(UserRole.USER);
         user.setActive(true);
         user.setCreatedAt(LocalDateTime.now());
-        user.setUsername(request.username());
 
         return user;
     }
@@ -36,8 +35,7 @@ public class UserMapper {
                 user.getEmail(),
                 user.getRole(),
                 user.isActive(),
-                user.getCreatedAt(),
-                user.getUsername()
+                user.getCreatedAt()
         );
     }
 }
