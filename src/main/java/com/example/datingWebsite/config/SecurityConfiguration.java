@@ -41,7 +41,11 @@ public class SecurityConfiguration {
                     return configuration;
                 }))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/register", "/login")
+                        .requestMatchers(
+                                "/auth/**",
+                                "/api/profiles/search",
+                                "/api/profiles/find-all-profiles"
+                        )
                         .permitAll()
                         .anyRequest()
                         .authenticated())
