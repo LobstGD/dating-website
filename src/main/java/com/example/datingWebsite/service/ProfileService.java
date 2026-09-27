@@ -4,7 +4,7 @@ import com.example.datingWebsite.dto.ProfileRequest;
 import com.example.datingWebsite.dto.ProfileResponse;
 import com.example.datingWebsite.exception.ProfileAccessDeniedException;
 import com.example.datingWebsite.exception.ProfileNotFoundException;
-import com.example.datingWebsite.exception.UserAlreadyExists;
+import com.example.datingWebsite.exception.UserAlreadyExistsException;
 import com.example.datingWebsite.exception.UserNotFoundException;
 import com.example.datingWebsite.mapper.ProfileMapper;
 import com.example.datingWebsite.model.Profile;
@@ -39,7 +39,7 @@ public class ProfileService {
                 .orElseThrow(() -> new UserNotFoundException("User not found!"));
 
         if (profileRepository.existsByUser(user)) {
-            throw new UserAlreadyExists("Profile already exists!");
+            throw new UserAlreadyExistsException("Profile already exists!");
         }
 
         Profile profile = profileMapper.toProfile(request);
