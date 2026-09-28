@@ -13,6 +13,8 @@ import com.example.datingWebsite.repository.ProfileRepository;
 import com.example.datingWebsite.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedModel;
@@ -50,6 +52,10 @@ public class ProfileService {
         return profileMapper.toResponse(savedProfile);
     }
 
+    @CacheEvict(
+            value = "profile",
+            key ="#id"
+    )
     @Transactional
     public ProfileResponse updateProfile(
             Long id,
@@ -83,5 +89,16 @@ public class ProfileService {
         Page<ProfileResponse> responsePage = profileRepository.findAll(pageable)
                 .map(profileMapper::toResponse);
         return new PagedModel<>(responsePage);
+    }
+
+    @Cacheable(
+            value = "profile",
+            key = "#id"
+    )
+    public ProfileResponse findProfileById(Long id) {
+        Profile profile = profileRepository.findById(id)
+                .orElseThrow(() -> new ProfileNotFoundException("Profile not found!"));
+        return profileMapper.toResponse(profile);
+
     }
 }

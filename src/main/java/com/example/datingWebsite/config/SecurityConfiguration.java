@@ -44,7 +44,8 @@ public class SecurityConfiguration {
                         .requestMatchers(
                                 "/auth/**",
                                 "/api/profiles/search",
-                                "/api/profiles/find-all-profiles"
+                                "/api/profiles/find-all-profiles",
+                                "/api/profiles/find/**"
                         )
                         .permitAll()
                         .anyRequest()
