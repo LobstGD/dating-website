@@ -2,6 +2,7 @@ package com.example.datingWebsite.controller;
 
 import com.example.datingWebsite.dto.ProfileRequest;
 import com.example.datingWebsite.dto.ProfileResponse;
+import com.example.datingWebsite.model.Profile;
 import com.example.datingWebsite.model.ProfileGender;
 import com.example.datingWebsite.repository.ProfileSearchDao;
 import com.example.datingWebsite.service.ProfileService;
@@ -61,5 +62,12 @@ public class ProfileController {
         return ResponseEntity.ok(
                 profileSearchDao.search(gender, minAge, maxAge, city, firstname, pageable)
         );
+    }
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<ProfileResponse> findProfileById(
+            @PathVariable("id") Long id
+    ) {
+        return ResponseEntity.ok(profileService.findProfileById(id));
     }
 }

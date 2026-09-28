@@ -20,3 +20,9 @@ spring:
     password:
     baseline-description: "init"
     baseline-version: 0
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST}
+      port: ${SPRING_REDIS_PORT}
+  caches:
+    type: redis
