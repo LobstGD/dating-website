@@ -14,15 +14,11 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   flyway:
-    baseline-on-migrate: true
     enabled: true
-    user:
-    password:
-    baseline-description: "init"
-    baseline-version: 0
+    locations: classpath:db/migration
   data:
     redis:
       host: ${SPRING_REDIS_HOST}
       port: ${SPRING_REDIS_PORT}
-  caches:
+  cache:
     type: redis
