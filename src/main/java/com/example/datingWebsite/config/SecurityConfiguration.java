@@ -3,6 +3,7 @@ package com.example.datingWebsite.config;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -41,12 +42,13 @@ public class SecurityConfiguration {
                     return configuration;
                 }))
                 .authorizeHttpRequests(request -> request
+                        .requestMatchers(HttpMethod.POST, "/auth/register", "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/profiles", "/api/profiles/search").permitAll()
                         .requestMatchers(
-                                "/auth/**",
-                                "/api/profiles/search",
-                                "/api/profiles"
-                        )
-                        .permitAll()
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
                         .anyRequest()
                         .authenticated())
                 .httpBasic(Customizer.withDefaults())

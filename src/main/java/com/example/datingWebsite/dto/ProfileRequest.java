@@ -13,11 +13,11 @@ public record ProfileRequest(
         String lastName,
 
         @NotNull(message = "Age can't be null")
-        @Min(value = 17, message = "Age must be at least 18")
-        @Max(value = 120, message = "Age must be at most 100")
+        @Min(value = 18, message = "Age must be at least 18")
+        @Max(value = 100, message = "Age must be at most 100")
         Integer age,
 
-        @NotEmpty(message = "Gender can't be empty")
+        @NotNull(message = "Gender can't be empty")
         ProfileGender gender,
 
         @NotEmpty(message = "City can't be empty")
