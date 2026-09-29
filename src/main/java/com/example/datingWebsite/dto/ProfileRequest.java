@@ -5,11 +5,11 @@ import jakarta.validation.constraints.*;
 
 public record ProfileRequest(
         @NotEmpty(message = "First name can't be empty")
-        @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
+        @Size(min = 2, max = 55, message = "First name must be between 2 and 55 characters")
         String firstName,
 
         @NotEmpty(message = "Last name can't be empty")
-        @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
+        @Size(min = 2, max = 55, message = "Last name must be between 2 and 55 characters")
         String lastName,
 
         @NotNull(message = "Age can't be null")
