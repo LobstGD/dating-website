@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/dating
-    username: postgres
-    password: 2286661337
+    url: jdbc:postgresql://${DEV_DB_HOST}:${DEV_DB_PORT}/${DEV_DB_NAME}
+    username: ${DEV_DB_USERNAME}
+    password: ${DEV_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -15,7 +15,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   data:
     redis:
-      host: localhost
-      port: 6379
-  caches:
+      host: ${DEV_SPRING_REDIS_HOST}
+      port: ${DEV_SPRING_REDIS_PORT}
+  cache:
     type: redis
