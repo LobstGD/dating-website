@@ -30,7 +30,7 @@ public class LikeService {
 
     private final JwtService jwtService;
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void like(Long toUserId, String token) {
         String email = jwtService.extractUserName(token);
 
@@ -62,7 +62,7 @@ public class LikeService {
         }
     }
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void unlike(Long toUserId, String token) {
         String email = jwtService.extractUserName(token);
         Users fromUser = userRepository.findByEmail(email)
